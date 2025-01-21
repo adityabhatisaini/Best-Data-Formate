@@ -1,0 +1,142 @@
+[
+  {
+    "Serial Number": 1,
+    "State": "Andhra Pradesh",
+    "Capital": "Amaravati"
+  },
+  {
+    "Serial Number": 2,
+    "State": "Arunachal Pradesh",
+    "Capital": "Itanagar"
+  },
+  {
+    "Serial Number": 3,
+    "State": "Assam",
+    "Capital": "Dispur"
+  },
+  {
+    "Serial Number": 4,
+    "State": "Bihar",
+    "Capital": "Patna"
+  },
+  {
+    "Serial Number": 5,
+    "State": "Chhattisgarh",
+    "Capital": "Raipur"
+  },
+  {
+    "Serial Number": 6,
+    "State": "Goa",
+    "Capital": "Panaji"
+  },
+  {
+    "Serial Number": 7,
+    "State": "Gujarat",
+    "Capital": "Gandhinagar"
+  },
+  {
+    "Serial Number": 8,
+    "State": "Haryana",
+    "Capital": "Chandigarh"
+  },
+  {
+    "Serial Number": 9,
+    "State": "Himachal Pradesh",
+    "Capital": "Shimla"
+  },
+  {
+    "Serial Number": 10,
+    "State": "Jharkhand",
+    "Capital": "Ranchi"
+  },
+  {
+    "Serial Number": 11,
+    "State": "Karnataka",
+    "Capital": "Bengaluru"
+  },
+  {
+    "Serial Number": 12,
+    "State": "Kerala",
+    "Capital": "Thiruvananthapuram"
+  },
+  {
+    "Serial Number": 13,
+    "State": "Madhya Pradesh",
+    "Capital": "Bhopal"
+  },
+  {
+    "Serial Number": 14,
+    "State": "Maharashtra",
+    "Capital": "Mumbai"
+  },
+  {
+    "Serial Number": 15,
+    "State": "Manipur",
+    "Capital": "Imphal"
+  },
+  {
+    "Serial Number": 16,
+    "State": "Meghalaya",
+    "Capital": "Shillong"
+  },
+  {
+    "Serial Number": 17,
+    "State": "Mizoram",
+    "Capital": "Aizawl"
+  },
+  {
+    "Serial Number": 18,
+    "State": "Nagaland",
+    "Capital": "Kohima"
+  },
+  {
+    "Serial Number": 19,
+    "State": "Odisha",
+    "Capital": "Bhubaneswar"
+  },
+  {
+    "Serial Number": 20,
+    "State": "Punjab",
+    "Capital": "Chandigarh"
+  },
+  {
+    "Serial Number": 21,
+    "State": "Rajasthan",
+    "Capital": "Jaipur"
+  },
+  {
+    "Serial Number": 22,
+    "State": "Sikkim",
+    "Capital": "Gangtok"
+  },
+  {
+    "Serial Number": 23,
+    "State": "Tamil Nadu",
+    "Capital": "Chennai"
+  },
+  {
+    "Serial Number": 24,
+    "State": "Telangana",
+    "Capital": "Hyderabad"
+  },
+  {
+    "Serial Number": 25,
+    "State": "Tripura",
+    "Capital": "Agartala"
+  },
+  {
+    "Serial Number": 26,
+    "State": "Uttar Pradesh",
+    "Capital": "Lucknow"
+  },
+  {
+    "Serial Number": 27,
+    "State": "Uttarakhand",
+    "Capital": "Dehradun"
+  },
+  {
+    "Serial Number": 28,
+    "State": "West Bengal",
+    "Capital": "Kolkata"
+  }
+]
