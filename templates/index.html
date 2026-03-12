@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Android Enterprise Admin Console</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div>
+          <p class="eyebrow">Enterprise Mobility</p>
+          <h1>Admin Control Center</h1>
+          <p class="sidebar-copy">One-click policy actions, live device signals, and Python-backed enterprise automation.</p>
+        </div>
+        <div class="sidebar-panel">
+          <h2>Quick pulse</h2>
+          <ul class="mini-stats">
+            <li><span>{{ summary.managed_devices }}</span> managed devices</li>
+            <li><span>{{ summary.active_policies }}</span> active policies</li>
+            <li><span>{{ summary.pending_alerts }}</span> pending alerts</li>
+          </ul>
+        </div>
+      </aside>
+
+      <main class="dashboard" data-default-device="{{ devices[0].id if devices else '' }}" data-default-policy="{{ policies[0].id if policies else '' }}">
+        <section class="hero">
+          <div>
+            <p class="eyebrow">Android Enterprise API</p>
+            <h2>Smart control interface for admin operations</h2>
+            <p>Run backend Python workflows from a secure web dashboard to deploy policies, sync devices, and respond to incidents fast.</p>
+          </div>
+          <div class="hero-status">
+            <div class="status-dot"></div>
+            <span>Backend ready for command execution</span>
+          </div>
+        </section>
+
+        <section class="summary-grid" id="summaryGrid">
+          <article class="metric-card">
+            <span>Managed Devices</span>
+            <strong data-summary="managed_devices">{{ summary.managed_devices }}</strong>
+          </article>
+          <article class="metric-card">
+            <span>Active Policies</span>
+            <strong data-summary="active_policies">{{ summary.active_policies }}</strong>
+          </article>
+          <article class="metric-card">
+            <span>Compliant</span>
+            <strong data-summary="compliant_devices">{{ summary.compliant_devices }}</strong>
+          </article>
+          <article class="metric-card alert">
+            <span>Pending Alerts</span>
+            <strong data-summary="pending_alerts">{{ summary.pending_alerts }}</strong>
+          </article>
+        </section>
+
+        <section class="content-grid">
+          <div class="panel action-panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Automations</p>
+                <h3>Run enterprise actions</h3>
+              </div>
+              <span id="actionState" class="tag">Idle</span>
+            </div>
+            <div class="selectors">
+              <label>
+                Policy
+                <select id="policySelect">
+                  {% for policy in policies %}
+                  <option value="{{ policy.id }}">{{ policy.name }} · {{ policy.version }}</option>
+                  {% endfor %}
+                </select>
+              </label>
+              <label>
+                Device
+                <select id="deviceSelect">
+                  {% for device in devices %}
+                  <option value="{{ device.id }}">{{ device.name }}</option>
+                  {% endfor %}
+                </select>
+              </label>
+            </div>
+            <div class="action-grid">
+              {% for action in actions %}
+              <button class="action-card" data-action="{{ action.id }}">
+                <strong>{{ action.label }}</strong>
+                <span>{{ action.description }}</span>
+              </button>
+              {% endfor %}
+            </div>
+            <div id="toast" class="toast hidden"></div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Policies</p>
+                <h3>Deployment set</h3>
+              </div>
+            </div>
+            <div class="list">
+              {% for policy in policies %}
+              <article class="list-item">
+                <div>
+                  <strong>{{ policy.name }}</strong>
+                  <p>{{ policy.scope }}</p>
+                </div>
+                <div class="meta">
+                  <span>{{ policy.version }}</span>
+                  <small>{{ policy.updated_at }}</small>
+                </div>
+              </article>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="panel wide">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Fleet</p>
+                <h3>Managed devices</h3>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Device</th>
+                    <th>Status</th>
+                    <th>Owner</th>
+                    <th>Last Sync</th>
+                  </tr>
+                </thead>
+                <tbody id="deviceTable">
+                  {% for device in devices %}
+                  <tr>
+                    <td>{{ device.name }}</td>
+                    <td><span class="status-pill {{ device.status|lower|replace(' ', '-') }}">{{ device.status }}</span></td>
+                    <td>{{ device.owner }}</td>
+                    <td>{{ device.last_sync }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Activity</p>
+                <h3>Recent command history</h3>
+              </div>
+            </div>
+            <div class="timeline" id="activityFeed">
+              {% for item in activity %}
+              <article class="timeline-item">
+                <span class="timeline-dot {{ item.level }}"></span>
+                <div>
+                  <strong>{{ item.message }}</strong>
+                  <p>{{ item.timestamp }}</p>
+                </div>
+              </article>
+              {% endfor %}
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      window.__BOOTSTRAP__ = {
+        summary: {{ summary | tojson }},
+        devices: {{ devices | tojson }},
+        activity: {{ activity | tojson }}
+      };
+    </script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
+</html>
